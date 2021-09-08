@@ -1,0 +1,17 @@
+version: '3'
+services:
+  lab-app-go:
+    build: ./lab-app-go
+    ports:
+    - "5001:8080"
+  lab-app-java:
+    build: ./lab-app-java
+    ports:
+    - "5002:8080"
+  nginx:
+    build: ./nginx 
+    ports:
+    - "8080:80"
+    depends_on:
+      - lab-app-go
+      - lab-app-java
