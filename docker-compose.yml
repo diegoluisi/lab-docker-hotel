@@ -4,14 +4,24 @@ services:
     build: ./lab-app-go
     ports:
     - "5001:8080"
+    networks:
+    - lab-docker-hotel
   lab-app-java:
     build: ./lab-app-java
     ports:
     - "5002:8080"
+    networks:
+    - lab-docker-hotel
   nginx:
     build: ./nginx 
     ports:
     - "8080:80"
+    networks:
+    - lab-docker-hotel
     depends_on:
       - lab-app-go
       - lab-app-java
+
+networks:
+  lab-docker-hotel:
+    driver: bridge
